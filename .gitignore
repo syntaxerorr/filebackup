@@ -1,5 +1,8 @@
 # Complied source
 dist/
 
-# packages
+# Packages
 node_modules/
+
+# Logs
+filebackup.log
