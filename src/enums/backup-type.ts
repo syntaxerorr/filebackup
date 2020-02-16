@@ -4,6 +4,6 @@
  * @enum {string}
  */
 export enum BackupType {
-    /** Putty PSCP */
+    /** Putty pscp.exe */
     pscp = 'pscp'
   }
