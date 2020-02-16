@@ -23,8 +23,8 @@
       "connectionString": "",
       "files": [
         {
-          "orginalFile": "C:/Apps/FileBackup/file-to-backup.txt",
-          "destinationFile": "C:/Apps/FileBackup/file-to-backup.bak"
+          "orginalFile": "C:/Apps/FileBackup/file-to-backup2.txt",
+          "destinationFile": "C:/Apps/FileBackup/file-to-backup2.bak"
         }
       ]
     }
