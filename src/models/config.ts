@@ -11,6 +11,6 @@ export interface FileGroup {
 }
 
 export interface Files {
-  orginalFile: string;
-  destinationFile: string;
+  source: string;
+  destination: string;
 }

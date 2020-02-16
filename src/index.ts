@@ -33,18 +33,18 @@ async function handleFileGroup(group: FileGroup) {
 
 async function handleFiles(group: FileGroup) {
   for (const file of group.files) {
-    await handleFile(file.orginalFile, file.destinationFile, group.backupType);
+    await handleFile(file.source, file.destination, group.backupType);
   }
 }
 
-async function handleFile(orginalFile: string, destinationFile: string, type: string) {
+async function handleFile(source: string, destination: string, type: string) {
   switch(type) {
     case getBackupTypeSpec(BackupType.pscp).type: {
-      await pscp(orginalFile, destinationFile);
+      await pscp(source, destination);
       break;
     }
     case getBackupTypeSpec(BackupType.win_copy).type: {
-      await win_copy(orginalFile, destinationFile);
+      await win_copy(source, destination);
       break;
     }
     default: {
