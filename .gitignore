@@ -6,3 +6,6 @@ node_modules/
 
 # Logs
 filebackup.log
+
+# Test backup file
+file-to-backup.txt

@@ -1,3 +1,5 @@
 {
-  "logFile": "C:/Apps/FileBackup/filebackup.log"
+  "logFile": "C:/Apps/FileBackup/filebackup.log",
+  "echoToScreen": true,
+  "fileToBackup": "C:/Apps/FileBackup/file-to-backup.txt"
 }
