@@ -1,7 +1,7 @@
 import { logToFile } from './utils';
 import * as config from './config.json';
-import { BackupType } from './enums';
 import { pscp } from './backup-types';
+import { getBackupTypeSpec, BackupType } from './enums';
 
 logToFile();
 
@@ -13,14 +13,13 @@ process.on('uncaughtException', function(err) {
 
 async function start() {
   console.log(`Backing up file: ${config.fileToBackup}`);
-  console.log(`Using backup method: ${config.backupType}`);
   switch(config.backupType) {
-    case BackupType.pscp: {
+    case getBackupTypeSpec(BackupType.pscp).type: {
       pscp();
       break;
     }
     default: {
-      console.log(`Unknown backup type`);
+      console.log(`Unknown backup type: ${config.backupType}`);
       break;
     }
 
