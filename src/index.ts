@@ -1,7 +1,8 @@
 import { logToFile, shellExe } from './utils';
 import * as config from './config.json';
 import { win_copy, pscp } from './backup-types';
-import { getBackupTypeSpec, BackupType } from './enums';
+import { win_delete } from './remove-types';
+import { getBackupTypeSpec, BackupType, RemoveType } from './enums';
 import { FileGroup, File } from './models';
 
 logToFile();
@@ -33,22 +34,37 @@ async function handleFileGroup(group: FileGroup) {
 
 async function handleFiles(group: FileGroup) {
   for (const file of group.files) { 
-    await handleFile(file, group.backupType, group.options);
+    await handleFile(file, group);
   }
 }
 
-async function handleFile(file: File, type: string, options?: any) {
-  switch(type) {
+async function handleFile(file: File, group: FileGroup) {
+  switch(group.backupType) {
     case getBackupTypeSpec(BackupType.win_copy).type: {
       await win_copy(file);
       break;
     }
     case getBackupTypeSpec(BackupType.pscp).type: {
-      await pscp(file, options);
+      //await pscp(file, group.options);
       break;
     }
     default: {
-      console.log(`Unknown backup type: ${type}`);
+      console.log(`Unknown backup type: ${group.backupType}`);
+      break;
+    }
+  }
+
+  switch(group.removeType) {
+    case RemoveType.win_delete: {
+      await win_delete(file);
+      break;
+    }
+    case RemoveType.linux_delete: {
+      //await linux_delete(file);
+      break;
+    }
+    default: {
+      console.log(`Unknown remove type: ${group.removeType}`);
       break;
     }
   }

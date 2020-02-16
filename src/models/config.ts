@@ -5,8 +5,10 @@ export interface FileGroup {
   id: string;
   description: string;
   backupType: string;
+  removeType: string;
   runBefore?: string;
   options: any;
+  daysToKeep: number;
   files: File[];
 }
 

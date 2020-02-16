@@ -6,8 +6,10 @@
       "id": "test1",
       "description": "test 1 desc",
       "backupType": "win_copy",
+      "removeType": "win_delete",
       "runBefore": "echo \"run before mock for test1 OK\"",
       "options": "",
+      "daysToKeep": 3,
       "files": [
         {
           "fileName": "file-to-backup.txt",
@@ -20,6 +22,7 @@
       "id": "test2",
       "description": "test 2 desc",
       "backupType": "pscp",
+      "removeType": "win_delete",
       "runBefore": "",
       "options": {
         "host": "192.168.1.1",
@@ -27,6 +30,7 @@
         "username": "username",
         "identityFile": "C:\\Apps\\FileBackup\\id_rsa"
       },
+      "daysToKeep": 3,
       "files": [
         {
           "fileName": "file-to-backup2.txt",
