@@ -1,6 +1,6 @@
 import { logToFile, shellExe } from './utils';
 import * as config from './config.json';
-import { pscp } from './backup-types';
+import { win_copy, pscp } from './backup-types';
 import { getBackupTypeSpec, BackupType } from './enums';
 import { FileGroup, Files } from './models';
 
@@ -41,6 +41,10 @@ async function handleFile(orginalFile: string, destinationFile: string, type: st
   switch(type) {
     case getBackupTypeSpec(BackupType.pscp).type: {
       await pscp(orginalFile, destinationFile);
+      break;
+    }
+    case getBackupTypeSpec(BackupType.win_copy).type: {
+      await win_copy(orginalFile, destinationFile);
       break;
     }
     default: {

@@ -10,11 +10,11 @@ export function shellExe(command: string): Promise<string> {
   return new Promise((resolve, reject) => {
     exec(command, (error, stdout, stderr) => {
       if (error) {
-        console.log(`ERROR shellExe: ${error.message}\nProgram will not terminate`);
+        console.log(`ERROR shellExe: ${error.message}\nProgram will now terminate`);
         process.exit(1);
       }
       if (stderr) {
-        console.log(`ERROR shellExe -> stderr: ${stderr}\nProgram will not terminate`);
+        console.log(`ERROR shellExe -> stderr: ${stderr}\nProgram will now terminate`);
         process.exit(1);
       }
       resolve(stdout);

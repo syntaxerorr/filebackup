@@ -5,13 +5,13 @@
     {
       "id": "test1",
       "description": "test 1 desc",
-      "backupType": "pscp",
+      "backupType": "win_copy",
       "runBefore": "echo \"run before mock for test1 OK\"",
       "connectionString": "",
       "files": [
         {
-          "orginalFile": "C:/Apps/FileBackup/file-to-backup.txt",
-          "destinationFile": "C:/Apps/FileBackup/file-to-backup.bak"
+          "orginalFile": "C:\\Apps\\FileBackup\\file-to-backup.txt",
+          "destinationFile": "C:\\Apps\\FileBackup\\file-to-backup.bak"
         }
       ]
     },
@@ -23,8 +23,8 @@
       "connectionString": "",
       "files": [
         {
-          "orginalFile": "C:/Apps/FileBackup/file-to-backup2.txt",
-          "destinationFile": "C:/Apps/FileBackup/file-to-backup2.bak"
+          "orginalFile": "C:\\Apps\\FileBackup\\file-to-backup2.txt",
+          "destinationFile": "C:\\Apps\\FileBackup\\file-to-backup2.bak"
         }
       ]
     }
