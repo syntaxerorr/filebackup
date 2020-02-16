@@ -1,6 +1,32 @@
 {
-  "backupType": "pscp",
   "logFile": "C:/Apps/FileBackup/filebackup.log",
   "echoToScreen": true,
-  "fileToBackup": "C:/Apps/FileBackup/file-to-backup.txt"
+  "fileGroups": [
+    {
+      "id": "test",
+      "description": "test 1 desc",
+      "backupType": "pscp",
+      "runBefore": "",
+      "connectionString": "",
+      "files": [
+        {
+          "orginalFile": "C:/Apps/FileBackup/file-to-backup.txt",
+          "destinationFile": "C:/Apps/FileBackup/file-to-backup.bak"
+        }
+      ]
+    },
+    {
+      "id": "test2",
+      "description": "test 2 desc",
+      "backupType": "pscp",
+      "runBefore": "",
+      "connectionString": "",
+      "files": [
+        {
+          "orginalFile": "C:/Apps/FileBackup/file-to-backup.txt",
+          "destinationFile": "C:/Apps/FileBackup/file-to-backup.bak"
+        }
+      ]
+    }
+  ]
 }

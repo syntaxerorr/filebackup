@@ -1,7 +1,8 @@
-import { logToFile } from './utils';
+import { logToFile, shellExe } from './utils';
 import * as config from './config.json';
 import { pscp } from './backup-types';
 import { getBackupTypeSpec, BackupType } from './enums';
+import { FileGroup, Files } from './models';
 
 logToFile();
 
@@ -12,17 +13,39 @@ process.on('uncaughtException', function(err) {
 });
 
 async function start() {
-  console.log(`Backing up file: ${config.fileToBackup}`);
-  switch(config.backupType) {
+  for (const fileGroup of config.fileGroups) {
+    console.log(`Backing up file group: ${fileGroup.description}`);
+    await handleFileGroup(fileGroup);
+  }
+}
+
+async function handleFileGroup(group: FileGroup) {
+  console.log(group);
+  if (group.runBefore) {
+    await shellExe(group.runBefore).catch(err => {
+      console.log(`ERROR runBefore file missing: ${err}`);
+      process.exit(1);
+    });
+  }
+  await handleFiles(group);
+}
+
+async function handleFiles(group: FileGroup) {
+  for (const file of group.files) {
+    await handleFile(file.orginalFile, file.destinationFile, group.backupType);
+  }
+}
+
+async function handleFile(orginalFile: string, destinationFile: string, type: string) {
+  switch(type) {
     case getBackupTypeSpec(BackupType.pscp).type: {
-      pscp();
+      await pscp(orginalFile, destinationFile);
       break;
     }
     default: {
-      console.log(`Unknown backup type: ${config.backupType}`);
+      console.log(`Unknown backup type: ${type}`);
       break;
     }
-
   }
 }
 

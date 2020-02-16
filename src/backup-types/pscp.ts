@@ -4,8 +4,8 @@ import { getBackupTypeSpec, BackupType } from '../enums';
 /**
 * Putty pscp.exe
 */
-export async function pscp() {
-  console.log(`Using: ${getBackupTypeSpec(BackupType.pscp).description}`);
+export async function pscp(orginalFile: string, destinationFile: string) {
+  console.log(`Using: ${getBackupTypeSpec(BackupType.pscp).description}, ${orginalFile}, ${destinationFile}`);
   let test = await shellExe('ping 8.8.8.8');
   console.log(`test: ${test}`);
 }
