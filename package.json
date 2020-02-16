@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Rolling file backup utility",
   "main": "dist/index.js",
+  "repository": "https://github.com/syntaxerorr/filebackup.git",
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
