@@ -1,5 +1,7 @@
-import { logToFile, shellExe } from './utils';
+import { logToFile } from './utils';
 import * as config from './config.json';
+import { BackupType } from './enums';
+import { pscp } from './backup-types';
 
 logToFile();
 
@@ -11,8 +13,18 @@ process.on('uncaughtException', function(err) {
 
 async function start() {
   console.log(`Backing up file: ${config.fileToBackup}`);
-  let test = await shellExe('ping 8.8.8.8');
-  console.log(`test: ${test}`);
+  console.log(`Using backup method: ${config.backupType}`);
+  switch(config.backupType) {
+    case BackupType.pscp: {
+      pscp();
+      break;
+    }
+    default: {
+      console.log(`Unknown backup type`);
+      break;
+    }
+
+  }
 }
 
 start();
