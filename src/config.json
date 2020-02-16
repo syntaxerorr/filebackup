@@ -3,10 +3,10 @@
   "echoToScreen": true,
   "fileGroups": [
     {
-      "id": "test",
+      "id": "test1",
       "description": "test 1 desc",
       "backupType": "pscp",
-      "runBefore": "",
+      "runBefore": "echo \"run before mock for test1 OK\"",
       "connectionString": "",
       "files": [
         {

@@ -22,10 +22,11 @@ async function start() {
 async function handleFileGroup(group: FileGroup) {
   console.log(group);
   if (group.runBefore) {
-    await shellExe(group.runBefore).catch(err => {
+    const result = await shellExe(group.runBefore).catch(err => {
       console.log(`ERROR runBefore file missing: ${err}`);
       process.exit(1);
     });
+    console.log(`Standard output of runBefore:\n${result}`);
   }
   await handleFiles(group);
 }
