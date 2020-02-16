@@ -2,7 +2,7 @@ import { logToFile, shellExe } from './utils';
 import * as config from './config.json';
 import { win_copy, pscp } from './backup-types';
 import { getBackupTypeSpec, BackupType } from './enums';
-import { FileGroup, Files } from './models';
+import { FileGroup, File } from './models';
 
 logToFile();
 
@@ -32,19 +32,19 @@ async function handleFileGroup(group: FileGroup) {
 }
 
 async function handleFiles(group: FileGroup) {
-  for (const file of group.files) {
-    await handleFile(file.source, file.destination, group.backupType);
+  for (const file of group.files) { 
+    await handleFile(file, group.backupType, group.options);
   }
 }
 
-async function handleFile(source: string, destination: string, type: string) {
+async function handleFile(file: File, type: string, options?: any) {
   switch(type) {
-    case getBackupTypeSpec(BackupType.pscp).type: {
-      await pscp(source, destination);
+    case getBackupTypeSpec(BackupType.win_copy).type: {
+      await win_copy(file);
       break;
     }
-    case getBackupTypeSpec(BackupType.win_copy).type: {
-      await win_copy(source, destination);
+    case getBackupTypeSpec(BackupType.pscp).type: {
+      await pscp(file, options);
       break;
     }
     default: {

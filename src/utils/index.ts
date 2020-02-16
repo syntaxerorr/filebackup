@@ -37,6 +37,18 @@ export function logToFile(): void {
 }
 
 function getTimeStamp(): string {
-  var tzOffset = (new Date()).getTimezoneOffset() * 60000;
+  const tzOffset = (new Date()).getTimezoneOffset() * 60000;
   return new Date(Date.now() - tzOffset).toISOString();
+}
+
+export function getDateStamp(): string {
+  const tzOffset = (new Date()).getTimezoneOffset() * 60000;
+  let d = new Date(Date.now() - tzOffset),
+    year = d.getFullYear(),
+    month = '' + (d.getMonth() + 1),
+    day = '' + d.getDate();
+
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
+  return [year, month, day].join('-');
 }

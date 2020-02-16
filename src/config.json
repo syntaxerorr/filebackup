@@ -7,11 +7,12 @@
       "description": "test 1 desc",
       "backupType": "win_copy",
       "runBefore": "echo \"run before mock for test1 OK\"",
-      "connectionString": "",
+      "options": "",
       "files": [
         {
-          "source": "C:\\Apps\\FileBackup\\file-to-backup.txt",
-          "destination": "C:\\Apps\\FileBackup\\file-to-backup.bak"
+          "fileName": "file-to-backup.txt",
+          "sourceDir": "C:\\Apps\\FileBackup\\",
+          "destinationDir": "C:\\Apps\\FileBackup\\"
         }
       ]
     },
@@ -20,11 +21,17 @@
       "description": "test 2 desc",
       "backupType": "pscp",
       "runBefore": "",
-      "connectionString": "",
+      "options": {
+        "host": "192.168.1.1",
+        "port": "22",
+        "username": "username",
+        "identityFile": "C:\\Apps\\FileBackup\\id_rsa"
+      },
       "files": [
         {
-          "source": "C:\\Apps\\FileBackup\\file-to-backup2.txt",
-          "destination": "C:\\Apps\\FileBackup\\file-to-backup2.bak"
+          "fileName": "file-to-backup2.txt",
+          "sourceDir": "C:\\Apps\\FileBackup\\",
+          "destinationDir": "C:\\Apps\\FileBackup\\"
         }
       ]
     }
