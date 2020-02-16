@@ -56,11 +56,11 @@ async function handleFile(file: File, group: FileGroup) {
 
   switch(group.removeType) {
     case RemoveType.win_delete: {
-      await win_delete(file);
+      await win_delete(file, group.daysToKeep);
       break;
     }
     case RemoveType.linux_delete: {
-      //await linux_delete(file);
+      //await linux_delete(file, group.daysToKeep);
       break;
     }
     default: {

@@ -52,3 +52,16 @@ export function getDateStamp(): string {
   if (day.length < 2) day = '0' + day;
   return [year, month, day].join('-');
 }
+
+export function getRemoveDateStamp(daysToKeep: number): string {
+  const tzOffset = (new Date()).getTimezoneOffset() * 60000;
+  const d = new Date(Date.now() - tzOffset);
+  d.setDate(d.getDate() - daysToKeep);
+  let year = d.getFullYear(),
+    month = '' + (d.getMonth() + 1),
+    day = '' + d.getDate();
+
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
+  return [year, month, day].join('-');
+}
